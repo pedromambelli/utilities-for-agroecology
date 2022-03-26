@@ -1,6 +1,8 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import GlobalStyles from 'styles/global'
+import GlobalStyles from '@App/styles/global'
+
+import 'react-vertical-timeline-component/style.min.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

@@ -9,7 +9,8 @@
     "lint": "eslint src --max-warnings=0",
     "prepare": "husky install",
     "test": "jest",
-    "test:watch": "yarn test --watch"
+    "test:watch": "yarn test --watch",
+    "clear_jest": "jest --clearCache"
   },
   "lint-staged": {
     "src/**/*": [
@@ -26,19 +27,27 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
+    "interactjs": "^1.10.11",
     "jest-styled-components": "^7.0.8",
     "next": "12.1.0",
     "next-pwa": "^5.4.6",
     "react": "17.0.2",
+    "react-calendar-timeline": "^0.27.0",
     "react-dom": "17.0.2",
+    "react-vertical-timeline-component": "^3.5.2",
     "styled-components": "^5.3.3",
+    "uuid": "^8.3.2",
     "webpack": "4"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.7",
     "@types/jest": "^27.4.1",
+    "@types/moment": "^2.13.0",
     "@types/react": "^17.0.42",
+    "@types/react-calendar-timeline": "^0.26.5",
+    "@types/react-vertical-timeline-component": "^3.3.2",
     "@types/styled-components": "^5.1.24",
+    "@types/uuid": "^8.3.4",
     "babel-plugin-styled-components": "^2.0.6",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
