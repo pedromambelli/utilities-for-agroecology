@@ -42,7 +42,17 @@ export const OutputCard = styled(Container)`
   padding: var(--small);
   background-color: #fff;
   grid-area: output;
+  overflow-y: hidden;
 `
+
+export const TimeLineWrapper = styled(Container)`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  border: solid 2px var(--sky);
+`
+
 export const FormLine = styled.div`
   display: grid;
   width: 100%;
@@ -84,11 +94,25 @@ export const AddEspecieButton = styled.button`
     font-weight: bold;
   }
 `
+export const SummaryLine = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: var(--watermelon);
+  padding: var(--micro);
+  strong {
+    color: var(--blackboard);
+  }
+  h3 {
+    background-color: var(--sky);
+    padding: var(--micro);
+  }
+`
 
 export const Body = styled.div`
   display: grid;
   width: 100%;
-  height: 100%;
+  height: 85%;
   padding: var(--small);
   /* grid-template-rows: 1fr; */
   grid-template-columns: 30% 70%;

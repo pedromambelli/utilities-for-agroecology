@@ -5,18 +5,16 @@ import { v4 as uuidv4 } from 'uuid'
 // import EventTimeLine from '@App/components/EventTimeLine'
 import { Especie } from '@App/types'
 import WeekTimeLine from '@App/components/WeekTimeLine'
+import HarvestCalendar from '@App/utils/HarvestCalendar'
+// import HarvestCalendar from '@App/utils/HarvestCalendar'
 
 const defaultConsortium = [
-  { name: 'Rabanete', ciclo: 28, quantidade: 1 },
-  { name: 'Alface', ciclo: 45, quantidade: 1 },
-  { name: 'Couve', ciclo: 60, quantidade: 1 },
-  { name: 'Milho', ciclo: 90, quantidade: 1 }
+  { id: uuidv4(), nome: 'Rabanete', ciclo: 28, quantidade: 1 },
+  { id: uuidv4(), nome: 'Alface', ciclo: 45, quantidade: 1 },
+  { id: uuidv4(), nome: 'Couve', ciclo: 60, quantidade: 1 },
+  { id: uuidv4(), nome: 'Milho', ciclo: 90, quantidade: 1 }
 ]
-const mySchedule = Array.from(Array(5).keys()).map((e) => ({
-  titulo: `Semana ${e + 1}`,
-  semana: e,
-  tipo: 'Plantar'
-}))
+
 const ConsorcioTemplate = () => {
   const [especieList, setEspecieList] = useState<Especie[]>(defaultConsortium)
   const deleteClickHandler = (idx?: string) => {
@@ -38,6 +36,8 @@ const ConsorcioTemplate = () => {
     })
     setEspecieList(updatedList)
   }
+  const { cicloCompleto, variedadeEspecies, numeroCanteiros } =
+    new HarvestCalendar(especieList).getSummary()
   return (
     <S.Container>
       <S.Title>Calculadora de Consórcio</S.Title>
@@ -61,12 +61,12 @@ const ConsorcioTemplate = () => {
               </S.DeleteLineButton>
               <input
                 type="text"
-                name={`input-name-${especie.id}`}
+                name={`input-nome-${especie.id}`}
                 id={`input-id-${especie.id}`}
                 placeholder="Nome da Espécie"
-                value={especie.name}
+                value={especie.nome}
                 onChange={(event) =>
-                  handleInputChange(event, 'name', especie.id)
+                  handleInputChange(event, 'nome', especie.id)
                 }
               />
               {/* </div> */}
@@ -100,7 +100,7 @@ const ConsorcioTemplate = () => {
             onClick={() =>
               setEspecieList([
                 ...especieList,
-                { id: uuidv4(), name: `Exemplo`, ciclo: 1, quantidade: 1 }
+                { id: uuidv4(), nome: `Exemplo`, ciclo: 1, quantidade: 1 }
               ])
             }
           >
@@ -109,12 +109,25 @@ const ConsorcioTemplate = () => {
         </S.FormCard>
         <S.OutputCard>
           <h1>Cronograma</h1>
-          {/* {especieList.map(({ name, ciclo }) => (
-            <p key={uuidv4()}>
-              A planta {name} tem um ciclo de {ciclo} dias
-            </p>
-          ))} */}
-          <WeekTimeLine schedule={mySchedule} />
+          <S.TimeLineWrapper>
+            <WeekTimeLine especieList={especieList} />
+          </S.TimeLineWrapper>
+          <h1>Resumo</h1>
+          <S.SummaryLine>
+            <h3>
+              <strong>Número de Espécies: </strong>
+              {variedadeEspecies}
+            </h3>
+            <h3>
+              <strong>Ciclo Completo: </strong>
+              {cicloCompleto}
+              <strong> dias</strong>
+            </h3>
+            <h3>
+              <strong>Número de Canteiros: </strong>
+              {numeroCanteiros}
+            </h3>
+          </S.SummaryLine>
         </S.OutputCard>
       </S.Body>
     </S.Container>

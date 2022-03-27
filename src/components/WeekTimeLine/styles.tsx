@@ -1,8 +1,15 @@
 import styled from 'styled-components'
 
-export const NumberIcon = styled.h2`
-  margin-bottom: auto;
-  margin-top: auto;
+export const NumberIcon = styled.div`
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-content: center;
+
+  h2 {
+    margin: auto;
+  }
 `
 
 export const StatsGroup = styled.div`
