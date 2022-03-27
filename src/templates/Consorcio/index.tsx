@@ -8,7 +8,7 @@ import WeekTimeLine from '@App/components/WeekTimeLine'
 import HarvestCalendar from '@App/utils/HarvestCalendar'
 // import HarvestCalendar from '@App/utils/HarvestCalendar'
 
-const defaultConsortium = [
+const defaultConsortium: Especie[] = [
   { id: uuidv4(), nome: 'Rabanete', ciclo: 28, quantidade: 1 },
   { id: uuidv4(), nome: 'Alface', ciclo: 45, quantidade: 1 },
   { id: uuidv4(), nome: 'Couve', ciclo: 60, quantidade: 1 },
@@ -18,7 +18,7 @@ const defaultConsortium = [
 const ConsorcioTemplate = () => {
   const [especieList, setEspecieList] = useState<Especie[]>(defaultConsortium)
   const deleteClickHandler = (idx?: string) => {
-    const trimedList = especieList.filter((value) => {
+    const trimedList = especieList.filter((value: Especie) => {
       console.log(value)
       return idx !== value.id
     })
@@ -30,7 +30,7 @@ const ConsorcioTemplate = () => {
     targetProp: string,
     id?: string
   ) => {
-    const updatedList = especieList.map((especie) => {
+    const updatedList = especieList.map((especie: Especie) => {
       if (especie.id === id) especie[targetProp] = event.target.value
       return especie
     })
@@ -51,7 +51,7 @@ const ConsorcioTemplate = () => {
             <h2>Ciclo</h2>
             <h2>Qtde.</h2>
           </S.FormLine>
-          {especieList.map((especie) => (
+          {especieList.map((especie: Especie) => (
             <S.FormLine key={`input-group-${especie.id}`}>
               {/* <div> */}
               <S.DeleteLineButton
@@ -108,26 +108,26 @@ const ConsorcioTemplate = () => {
           </S.AddEspecieButton>
         </S.FormCard>
         <S.OutputCard>
+          <h1>Resumo</h1>
+          <S.SummaryLine>
+            <h4>
+              <strong>Número de Espécies: </strong>
+              {variedadeEspecies}
+            </h4>
+            <h4>
+              <strong>Ciclo Completo: </strong>
+              {cicloCompleto}
+              <strong> dias</strong>
+            </h4>
+            <h4>
+              <strong>Número de Canteiros: </strong>
+              {numeroCanteiros}
+            </h4>
+          </S.SummaryLine>
           <h1>Cronograma</h1>
           <S.TimeLineWrapper>
             <WeekTimeLine especieList={especieList} />
           </S.TimeLineWrapper>
-          <h1>Resumo</h1>
-          <S.SummaryLine>
-            <h3>
-              <strong>Número de Espécies: </strong>
-              {variedadeEspecies}
-            </h3>
-            <h3>
-              <strong>Ciclo Completo: </strong>
-              {cicloCompleto}
-              <strong> dias</strong>
-            </h3>
-            <h3>
-              <strong>Número de Canteiros: </strong>
-              {numeroCanteiros}
-            </h3>
-          </S.SummaryLine>
         </S.OutputCard>
       </S.Body>
     </S.Container>

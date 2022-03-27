@@ -103,7 +103,7 @@ export const SummaryLine = styled.div`
   strong {
     color: var(--blackboard);
   }
-  h3 {
+  h4 {
     background-color: var(--sky);
     padding: var(--micro);
   }
@@ -116,6 +116,7 @@ export const Body = styled.div`
   padding: var(--small);
   /* grid-template-rows: 1fr; */
   grid-template-columns: 30% 70%;
+
   grid-template-areas: 'input output';
   text-align: center;
   grid-gap: 0.5rem;
